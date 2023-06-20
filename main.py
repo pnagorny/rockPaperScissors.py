@@ -29,15 +29,20 @@ def getCpuTurn():
         if cpuTurn == key:
             print(f"Wybór komputera: {value}")
             return value
-
-def checkWin():
-    if rules(getUserTurn(),getCpuTurn()):
-        print("Wygrywasz!\n")
-    else:
-        print("Niestety przegrywasz :(\n")
-        
+    
 def main():
+    userWins = 0
+    cpuWins = 0
     while True:
-        checkWin()
-
+        if rules(getUserTurn(),getCpuTurn()):
+            print("Wygrywasz!\n")
+            userWins += 1
+            print(f"User wins: {userWins}")
+            print(f"Cpu wins: {cpuWins}")
+        else:
+            print("Niestety przegrywasz :(\n")
+            cpuWins += 1
+            print(f"User wins: {userWins}")
+            print(f"Cpu wins: {cpuWins}")
+        
 main()
