@@ -13,6 +13,8 @@ def rules(user, cpu):
         return True
     elif user == 'Scissors' and cpu == 'Paper':
         return True
+    elif user == cpu:
+        return "Remis"
     else:
         return False
     
@@ -34,15 +36,23 @@ def main():
     userWins = 0
     cpuWins = 0
     while True:
-        if rules(getUserTurn(),getCpuTurn()):
-            print("Wygrywasz!\n")
-            userWins += 1
-            print(f"User wins: {userWins}")
-            print(f"Cpu wins: {cpuWins}")
-        else:
-            print("Niestety przegrywasz :(\n")
-            cpuWins += 1
-            print(f"User wins: {userWins}")
-            print(f"Cpu wins: {cpuWins}")
+        match rules(getUserTurn(), getCpuTurn()):
+            case True:
+                print("Wygrales!")
+                userWins += 1
+                print(f"Twoj wynik: {userWins}")
+                print(f"Wynik CPU: {cpuWins}\n")
+            case False:
+                print("Przegrales :(")
+                cpuWins += 1
+                print(f"Twoj wynik: {userWins}")
+                print(f"Wynik CPU: {cpuWins}\n")
+            case "Remis":
+                print("Remis!")
+                userWins += 1
+                cpuWins += 1
+                print(f"Twoj wynik: {userWins}")
+                print(f"Wynik CPU: {cpuWins}\n")
+                
         
 main()
